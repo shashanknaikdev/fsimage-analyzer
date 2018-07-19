@@ -6,10 +6,11 @@ The script has been migrated to Pyspark with features to create HDFS directories
 
 *Note: This requires HDFS admin priviledges*
 
-The Step1_FetchFsimage.sh will roll the edits log, and fetch the latest fsimage to the node the script is being run on. It then uses the OIV tool to convert the fsimage into a text delimited format and moves it to the HDFS path defined.
-The Step2_FsimagePyspark.py file is a PySpark script that reads the text format fsimage and loads it into a DataFrame. Only the features "Path", "Replication", "PreferredBlockSize", "BlocksCount" and "FileSize" are used.
+The **Step1_FetchFsimage.sh** shell script will roll the edits log, and fetch the latest fsimage to the node the script is being run on. It then uses the OIV tool to convert the fsimage into a text delimited format and moves it to the HDFS path defined.
 
-The UDF splitPaths(str) processes each Path in the DataFrame and splits the strings such that /tmp/tables/tbl1 is split to /, /tmp, /tmp/tables, /tmp/tables/tbl1
+The **Step2_FsimagePyspark.py** file is a PySpark script that reads the text format fsimage and loads it into a DataFrame. Only the features "Path", "Replication", "PreferredBlockSize", "BlocksCount" and "FileSize" are used.
+
+The UDF splitPaths(str) processes each Path in the DataFrame and splits the strings such that */tmp/tables/tbl1* is split to */, /tmp, /tmp/tables, /tmp/tables/tbl1*
 
 Once the paths are split, we generate the columns TotalSize as sum(FileSize), totalblocks as sum(BlocksCount), avgblocksize as sum(FileSize)/sum(BlocksCount), idealblocks as sum(FileSize)/avg(PreferredBlockSize), blockreduction as sum(BlocksCount)-sum(FileSize)/avg(PreferredBlockSize). A new field extract_dt is added which is used as the partitioning column, the date is automatically fetched as the current date.
 
