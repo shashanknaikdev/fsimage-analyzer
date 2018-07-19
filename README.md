@@ -1,6 +1,6 @@
 # fsimage-analyzer
 
-These scripts are based on code written by Peter Ebert for the fsimage analyzer
+These scripts are based on code written by **Peter Ebert** for the fsimage analyzer
 
 The script has been migrated to Pyspark with features to create HDFS directories and tables through the shell script to make it convenient to track fsimage periodically.
 
