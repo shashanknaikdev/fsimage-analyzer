@@ -61,6 +61,7 @@ Once the fsimage is loaded in the table you can run queries like:
     where path like ("%/genericTablePath/%") 
           and LENGTH(regexp_replace(path,'[^/]',''))=5 
           and extract_dt='2018-05-10'
-    order by blockreduction desc limit 20;
+    order by blockreduction desc 
+    limit 20;
 
 This lets you drill down into path at different levels with the **LENGTH(regexp_replace(path,'[^/]',''))=5**. You can change the level of depth you want to check, even filtering for specific table locations in the where clause.
