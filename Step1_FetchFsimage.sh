@@ -28,4 +28,4 @@ rm -f ./fsimage_$DATE
 # rm -f ./fsimage_$DATE.tsv
 
 # Specify/modify any additional options i.e. --num-executors, --executor-cores, --driver-memory, --driver-cores, etc
-spark2-submit --executor-memory $SPARK_EXECUTOR_MEM --driver-memory $SPARK_DRIVER_MEM 2_fsImagePyspark.py
+spark2-submit --executor-memory $SPARK_EXECUTOR_MEM --driver-memory $SPARK_DRIVER_MEM Step2_FsimagePyspark.py
