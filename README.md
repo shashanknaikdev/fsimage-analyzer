@@ -19,11 +19,7 @@ Once the paths are split, we generate the columns TotalSize as sum(FileSize), to
 **idealblocks**: The ideal number of blocks that at the Path location in best case scenario
 **blockreduction**: The potential for block reduction at the Path location, higher means more small files
 
-  
-# Filter out paths that you would like to be excluded from the final table (eg: Oozie, tmp, solr, hive warehouse, etc)
-filteredPaths = smallBlocksListDF.filter("path not like '/user/oozie%'").filter("path not like '/solr%'").filter("path not like '/hbase%'").filter("path not like '/tmp%'").filter("path not like '/user/hive/warehouse%'")
-
-filteredPaths.repartition(1).write.mode('append').format('parquet').saveAsTable(dbName+"."+tblName, partitionBy='extract_dt', compression = 'snappy')
+In the next step, it filters out paths that you would like to be excluded from the final table (eg: Oozie, tmp, solr, hive warehouse, etc) - You can change this if needed.
 
 ### Usage:
 
