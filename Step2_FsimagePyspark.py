@@ -10,13 +10,14 @@ curr_date = str(datetime.date.today())
 
 ############ Config ############
 # This should be the HDFS_PATH location set in the first script
-tsvFilePath="/tmp/fsimage/fsimage_"+curr_date+".tsv"
+HDFS_PATH="/tmp/fsimage/"
 
 # The database name
 dbName = "default"
 tblName = "fsimage_tbl"
 ################################
 
+tsvFilePath = HDFS_PATH + "fsimage_"+curr_date+".tsv"
 tsvDF = spark.read.option("header","true").csv(tsvFilePath,sep='\t')
 tsvDF = tsvDF.select("Path", "Replication", "PreferredBlockSize", "BlocksCount", "FileSize").filter("BlocksCount!=0")
 
